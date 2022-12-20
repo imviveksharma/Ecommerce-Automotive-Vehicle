@@ -1,0 +1,38 @@
+<body style="background-color: black;">
+    <mat-toolbar color="primary">
+        <h1 style="margin-left:45% ;">USER REGISTER PANEL</h1>
+    </mat-toolbar>
+    <img src="https://www.techasoft.com/uploads/ekart_logo.png" style="float:left">
+    <div class="form">
+
+        <form [formGroup]="regForm">
+            <mat-form-field appearance="outline" style="width: 50%;">
+                <mat-label>LOGIN ID</mat-label>
+                <input matInput placeholder="Enter Your Email Id" style="color: white;" formControlName="emailId">
+            </mat-form-field>
+            <br><br>
+            <mat-form-field appearance="outline" style="width: 50%;">
+                <mat-label>PASSWORD</mat-label>
+                <input matInput placeholder="Enter Your Password" style="color: white;" formControlName="password" [type]="hide ? 'password' : 'text'">
+                <button style="color: white;" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field appearance="outline" style="width: 50%;">
+                <mat-label>RE-ENTER PASSWORD</mat-label>
+                <input matInput placeholder="Re-Enter Your Password" style="color: white;" [type]="hide ? 'password' : 'text'">
+                <button style="color: white;" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+    
+    </button></mat-form-field>
+        </form><br><br>
+        <button mat-raised-button color="warn" (click)="saveData()">Register</button><br>
+        <hr>
+        <h1 style="color: white;">If You Already Have an Account Please Login Here!</h1>
+        <button mat-raised-button color="warn" (click)="login()">Login</button>
+
+    </div>
+</body>

@@ -1,0 +1,78 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <img src="https://www.techasoft.com/uploads/ekart_logo.png" height="80%" width="5%">
+    <span class="example-spacer"></span>
+    <form class="example-form">
+        <div style="display: flex;">
+            <mat-form-field class="example-full-width">
+                <input matInput #message maxlength="100" placeholder="Search">
+            </mat-form-field>
+        </div>
+    </form>
+    <button mat-icon-button><mat-icon>search</mat-icon></button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>mic</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" style=" margin-left: 20%;margin-right:3%; "><mat-icon>person_outline</mat-icon>Account</button>
+    <button mat-icon-button aria-label="Example icon-button with a menu " routerLink="cart">
+      <mat-icon [matBadge]="count" matBadgePosition="after" matBadgeColor="accent">shopping_cart</mat-icon>Cart
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="login">
+        <mat-icon>person</mat-icon>
+        <span>Login</span>
+      </button>
+        <button mat-menu-item routerLink="register">
+        <mat-icon>person_add</mat-icon>
+        <span>Register</span>
+      </button>
+    </mat-menu>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav style="width: 18%;margin-top: 3.8%; " fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation' " [mode]="(isHandset$ | async) ? 'push' : 'side' " [opened]="false ">
+        <mat-nav-list>
+            <h3>Admin Login</h3>
+            <button style="margin-left:5px;" mat-stroked-button routerLink="admin"><mat-icon>account_circle</mat-icon><span>Log In</span></button>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="height:92vh; ">
+            <img src="https://cdn.shopify.com/s/files/1/0514/4844/7172/files/Main-Banner_1020x779_9f3685c0-ad7c-44a6-91ea-6df993d2c05f.jpg?v=1615205116 " alt=" " height="65% " width="100% ">
+            <div class="card-top container-fluid ">
+                <div class="container d-flex ">
+                    <div class="item ">
+
+                        <img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/menu/09_09/menu_asterion.png " alt="car " height="10% " width="10% ">
+                        <img src="https://cdn.bajajauto.com/-/media/Assets/bajajauto/bikes/BikeListing/Pulsar/PulsarNS125.ashx " alt="bikes " height="10% " width="10% ">
+                        <h3>
+                            <a>Cars</a>
+                            <a style="margin-left: 8%; ">Bikes</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+
+          <!-- Card For Showing Vehicles -->
+            <div class="container ">
+                <div class="row ">
+                    <ng-container *ngFor="let item of productList ">
+
+                        <mat-card class="example-card">
+                            <img mat-card-image src="{{item.image}}" alt="Photo of Vehicles" height="200px" width="20%">
+                            <mat-card-content>
+                                <mat-card-title style="color: black;">{{item.title}}</mat-card-title>
+                                <h2 style="color: black;">₹{{item.price}} onwards</h2>
+                                <h3 style="color: gray;">Avg.Ex-Showroom price</h3>
+                                <button mat-raised-button color="warn" (click)="incrementCount(item)">Add To Cart</button>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-container>
+                </div>
+            </div>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
